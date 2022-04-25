@@ -1,8 +1,11 @@
 import {useState} from "react"
+
 import { Link, useNavigate} from 'react-router-dom'
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { toast } from "react-toastify"
+import Oauth from "../components/Oauth/Oauth"
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -32,7 +35,7 @@ const SignIn = () => {
         console.log(userCredential.user);
       }
     } catch (error) {
-      console.log(error);
+      toast.error('404');
     }
   }
   return (
@@ -68,7 +71,7 @@ const SignIn = () => {
             </button>
           </div>
         </form>
-        {/*Google Auth*/}
+       <Oauth/>
         <Link className='registerLink' to='/sign-up'>Sign Up Instead</Link>
       </main>
     </div>

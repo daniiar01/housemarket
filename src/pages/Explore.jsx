@@ -1,9 +1,44 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import rentCategoryImg from '../assets/jpeg/rentCategoryImage.jpg'
+import sellCategoryImg from '../assets/jpeg/sellCategoryImage.jpg'
 
-const explore = () => {
+
+
+
+
+
+
+const Explore = () => {
   return (
-    <div className='pageHeader'>Explore</div>
+    <div className='explore'>
+      <header>
+        <p className='pageHeader'>Explore</p>
+      </header>
+      <main>
+        {/* Slider */}
+        <p className='exploreCategoryHeading'>Categories</p>
+        <div className='exploreCategories'>
+          <Link to='/category/rent'>
+            <img
+              src={rentCategoryImg}
+              alt='rent'
+              className='exploreCategoryImg'
+            />
+            <p className='exploreCategoryName'>Places for rent</p>
+          </Link>
+          <Link to='/category/sell'>
+            <img
+              src={sellCategoryImg}
+              alt='sell'
+              className='exploreCategoryImg'
+            />
+            <p className='exploreCategoryName'>Places for sell</p>
+          </Link>
+        </div>
+      </main>
+    </div>
   )
 }
 
-export default explore
+export default Explore

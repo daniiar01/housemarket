@@ -13,6 +13,7 @@ body {
   background-color: #f2f4f8;
   margin: 0;
   box-sizing: border-box;
+  padding-bottom: 10px;
 }
 
 a {
@@ -743,7 +744,9 @@ button {
 .formButtonActive {
   background-color: #00cc66;
   color: #ffffff;
+  cursor: pointer;
 }
+
 
 .flex {
   display: flex;

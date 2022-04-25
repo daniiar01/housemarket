@@ -1,13 +1,16 @@
 
+import { toast } from 'react-toastify'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import {getAuth, createUserWithEmailAndPassword, updateProfile} from 'firebase/auth'
 import {db} from '../firebase.config.js'
+import Oauth from "../components/Oauth/Oauth"
 
 import { setDoc,doc , serverTimestamp} from 'firebase/firestore'
 const SignUp = () => {
+    console.log(toast);
     const [showPassword, setShowPassword] = useState(false)
       const [formData, setFormData] = useState({
         name: '',
@@ -39,7 +42,7 @@ const SignUp = () => {
           await setDoc(doc(db, 'users', user.uid), formDataCopy)
           navigate('/')
         } catch (error) {
-          console.log(error);
+          toast.error('Error');
         }
       }
     
@@ -52,9 +55,9 @@ const SignUp = () => {
           <main>
             <form onSubmit={onSubmit}>
               <input 
-              id='name' type = 'name' placeholder='Name' className="nameInput" value={name} onChange={onChange}/ >
+              id='name' type = 'name' placeholder='Name' className="nameInput" value={name} onChange={onChange}/>
               <input 
-              id='email' type = 'email' placeholder='Email' className="emailInput" value={email} onChange={onChange}/ >
+              id='email' type = 'email' placeholder='Email' className="emailInput" value={email} onChange={onChange}/>
               <div className="passwordInputDiv">
                 <input
                 id='password'
@@ -77,7 +80,7 @@ const SignUp = () => {
                 </button>
               </div>
             </form>
-            {/*Google Auth*/}
+            <Oauth/>
             <Link className='registerLink' to='/sign-in'>Sign In Instead</Link>
           </main>
         </div>

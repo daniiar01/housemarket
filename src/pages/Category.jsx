@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
-
+import { useParams } from 'react-router-dom'
 import { collection, getDocs, query, where, orderBy, limit } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { toast } from 'react-toastify'
@@ -9,17 +9,17 @@ import ListingItem from '../components/ListingItem/ListingItem'
 
 
 
-const Offers = () => {
+const Category = () => {
   const [listings, setListings] = useState(null)
   const [loading, setLoading] = useState (true)
-  
+  const params = useParams ()
   // console.log(params);
   useEffect(() => {
     (async () =>{
       try {
         const listingsRef = collection(db, 'listings')
         const q = query(listingsRef,
-          where('offer', '==', true),
+          where('type', '==', params.categoryName),
           orderBy('timestamp', 'desc'),
           limit(10)
           )
@@ -40,11 +40,11 @@ const Offers = () => {
       }
     }
     ) ()
-  },[])
+  },[params.categoryName])
   return (
     <div className='category'>
      <header>
-       <p className='pageHeader'> Rent</p>
+       <p className='pageHeader'> Places for {params.categoryName}</p>
       
      </header>
      {loading ?(
@@ -58,9 +58,9 @@ const Offers = () => {
     </main>
        </> 
        ):(
-     <p>There are no current offers</p>)}
+     <p>No listings for {params.categoryName}</p>)}
      </div>
   )
 }
 
-export default Offers
+export default Category
