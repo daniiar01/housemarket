@@ -15,6 +15,9 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
 import CreateListing from './pages/CreateListing.jsx';
 import Category from './pages/Category.jsx';
 import Listing from './pages/Listing.jsx';
+import Contact from './pages/Contact.jsx';
+
+
 const App = () => {
   return (
     <>
@@ -35,6 +38,7 @@ const App = () => {
             path='/category/:categoryName/:listingId'
             element={<Listing/>}
           />
+          <Route path='/contact/:landlordId' element ={<Contact/>}/>
       </Routes>
       <NavBar/>
     </Router>
